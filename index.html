@@ -5,48 +5,18 @@
 	</title>
 	
 	<script type="text/javascript" src="phaser.js"></script>
-	
-	<script type="text/javascript">
-	
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-
-function preload() {
-	//preloads the sprites
-	game.load.image('blue', 'assets/drops/always/blue.png');
-	game.load.image('red', 'assets/drops/always/red.png');
-	game.load.image('yellow', 'assets/drops/always/yellow.png');
-	game.load.image('lightblue', 'assets/drops/often/lightblue.png');
-	game.load.image('lightgreen', 'assets/drops/often/lightgreen.png');
-	game.load.image('pink', 'assets/drops/often/pink.png');
-	game.load.image('green	', 'assets/drops/uncommon/green.png');
-	game.load.image('orange', 'assets/drops/uncommon/orange.png');
-	game.load.image('purple', 'assets/drops/uncommon/purple.png');
-	game.load.image('black', 'assets/drops/hardlyever/black.png');
-	game.load.image('bomb', 'assets/drops/bonus/bomb.png');
-	game.load.image('catfeed', 'assets/drops/bonus/catfeed.png');
-	game.load.image('heart', 'assets/drops/bonus/heart.gif');
-	//backgrounds
-	game.load.image('bg', 'assets/bg.png');
-	//net
-	game.load.image('net', 'assets/net.png');
-}
-
-var net;
-	
-function create() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-	game.add.sprite(0, 0, 'bg');
-	player = game.add.sprite(10, 10, 'net');
-	
-
-}	
-
-
-function update(){
-	player.x = game.input.mousePointer.x - (player.width/2);
-	player.y = game.input.mousePointer.y - (player.height/2);
-
-}
-
-	</script>
+	<script type="text/javascript" src="boot.js"></script>
+    
+    
+    <script>
+    			(function() {
+				var game = new Phaser.AUTO(320, 480, Phaser.CANVAS, "game");
+				game.state.add("Boot",boot);
+				/*game.state.add("Preload",preload);
+				game.state.add("GameTitle",gameTitle);
+				game.state.add("TheGame",theGame);
+				game.state.add("GameOver",gameOver);*/
+				game.state.start("Boot");
+			})();
+        </script>
 <html>
