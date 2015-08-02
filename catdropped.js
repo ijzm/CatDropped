@@ -23,11 +23,20 @@ Cat.prototype.update = function() {
 }
 
 
+
 catdropped.prototype = {
+	
+	catchcat: function(){
+	console.log("caught");
+},
 	create: function() {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		this.game.add.sprite(0, 0, 'bg');
 		player = this.game.add.sprite(10, 10, 'net');
+		
+		catgroup = this.game.add.group();
+		
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
 
@@ -40,7 +49,7 @@ catdropped.prototype = {
 		player.x = this.game.input.mousePointer.x - (player.width/2);
 		player.y = this.game.input.mousePointer.y - (player.height/2);
 
-		this.game.physics.arcade.overlap(player, this.game.debugbutton, this.catchcat, null, this);
+		this.game.physics.arcade.collide(player, catgroup, this.catchcat);
 
 	},
 	//Always:             50% ->
@@ -122,11 +131,8 @@ catdropped.prototype = {
 		} else {
 			var cat = new Cat(this.game, Math.floor(Math.random() * (this.game.width-42))  , Math.floor(Math.random() * 100) + 50  , color);
 			this.game.add.existing(cat);
+			catgroup.add(cat);
 		}
-	},
-
-	catchcat: function(){
-		console.log("caught");
-
 	}
+
 }
