@@ -1,6 +1,6 @@
 var boot = function(game){
 	console.log("boot");
-};
+}
 
 
 boot.prototype = {
@@ -31,11 +31,11 @@ boot.prototype = {
 	create: function() {
 		this.game.add.sprite(0, 0, 'bgmenu');
 		
-		var play = this.game.add.button(550/2, 400/2, "playbutton", this.playTheGame,this);
+		var play = this.game.add.button(550/2-168/2, 400/2, "playbutton", this.playTheGame,this);
 	},
 	
 	playTheGame: function(){
 		console.log("PLAY");
-		//this.game.state.start("TheGame");
+		this.game.state.start("CatDropped");
 	}
 }

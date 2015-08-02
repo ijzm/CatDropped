@@ -6,16 +6,13 @@
 	
 	<script type="text/javascript" src="phaser.js"></script>
 	<script type="text/javascript" src="boot.js"></script>
-    
+    <script type="text/javascript" src="catdropped.js"></script>
     
     <script>
     			(function() {
 				var game = new Phaser.Game(550, 400, Phaser.CANVAS, "game");
 				game.state.add("Boot",boot);
-				/*game.state.add("Preload",preload);
-				game.state.add("GameTitle",gameTitle);
-				game.state.add("TheGame",theGame);
-				game.state.add("GameOver",gameOver);*/
+				game.state.add("CatDropped",catdropped);
 				game.state.start("Boot");
 			})();
         </script>
