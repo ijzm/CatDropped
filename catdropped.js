@@ -1,6 +1,7 @@
 var catdropped = function(game){
 	console.log("CatDropped");
 	var player;
+	var choosecolor;
 }
 
 Cat = function(game, x, speed, color){
@@ -42,11 +43,82 @@ catdropped.prototype = {
 		this.game.physics.arcade.overlap(player, this.game.debugbutton, this.catchcat, null, this);
 
 	},
-	
+	//Always:             50% ->
+	//Often:              25% ->
+	//Uncomon:            10% ->
+	//HardlyEver:         5% ->
+	//Bonus:              10% ->
+	 
 	createcat: function(){
 			console.log("DEBUG");
+		
+		var color;
+		var choosecolor2;
+		
+		choosecolor = Math.floor(Math.random() * 100) + 1;
+		
+		if (choosecolor > 0 && choosecolor <= 50){
+		console.log("always");
+			choosecolor2 = Math.floor(Math.random() * 3) + 1;
 			
-			var cat = new Cat(this.game, Math.floor(Math.random() * (this.game.width-42))  , Math.floor(Math.random() * 100) + 50  , "red");
+			if(choosecolor2 === 1){
+				color = "blue";
+			}
+			if(choosecolor2 === 2){
+				color = "red";
+			}
+			if(choosecolor2 === 3){
+				color = "yellow";
+			}
+		}
+		if (choosecolor > 50 && choosecolor <= 75){
+		console.log("ofen");
+						choosecolor2 = Math.floor(Math.random() * 3) + 1;
+			
+			if(choosecolor2 === 1){
+				color = "lightblue";
+			}
+			if(choosecolor2 === 2){
+				color = "lightgreen";
+			}
+			if(choosecolor2 === 3){
+				color = "pink";
+			}
+		}
+		if (choosecolor > 75 && choosecolor <= 85){
+		console.log("uncommon");
+						choosecolor2 = Math.floor(Math.random() * 3) + 1;
+			
+			if(choosecolor2 === 1){
+				color = "green";
+			}
+			if(choosecolor2 === 2){
+				color = "orange";
+			}
+			if(choosecolor2 === 3){
+				color = "purple";
+			}
+		}
+		if (choosecolor > 85 && choosecolor <= 90){
+		console.log("hardlyever");	
+			color = "black"; 
+		}
+		if (choosecolor > 90 && choosecolor <= 100){
+		console.log("bonus");
+						choosecolor2 = Math.floor(Math.random() * 3) + 1;
+			
+			if(choosecolor2 === 1){
+				color = "bomb";
+			}
+			if(choosecolor2 === 2){
+				color = "catfeed";
+			}
+			if(choosecolor2 === 3){
+				color = "heart";
+			}
+		}
+		
+			var cat = new Cat(this.game, Math.floor(Math.random() * (this.game.width-42))  , Math.floor(Math.random() * 100) + 50  , color);
 			this.game.add.existing(cat);
 	},
 	
