@@ -20,9 +20,24 @@ Cat.prototype.update = function() {
 		this.destroy();
 		console.log("lostLife");
 	}
+	
+	
+	if(checkOverlap(player, this)){
+		   
+		   this.destroy();
+		   
+		   }
+
 }
 
+function checkOverlap(spriteA, spriteB) {
 
+    var boundsA = spriteA.getBounds();
+    var boundsB = spriteB.getBounds();
+
+    return Phaser.Rectangle.intersects(boundsA, boundsB);
+
+}
 
 catdropped.prototype = {
 	
@@ -37,6 +52,13 @@ catdropped.prototype = {
 		catgroup = this.game.add.group();
 		
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
+		
+		
+		//timer
+		
+		this.timer1 = this.game.time.create(false);
+		this.timer1.loop(1000, this.createcat, this);
+		this.timer1.start();
 
 
 
@@ -50,7 +72,8 @@ catdropped.prototype = {
 		player.y = this.game.input.mousePointer.y - (player.height/2);
 
 		this.game.physics.arcade.collide(player, catgroup, this.catchcat);
-
+		
+		
 	},
 	//Always:             50% ->
 	//Often:              25% ->
