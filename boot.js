@@ -1,5 +1,6 @@
 var boot = function(game){
 	console.log("boot");
+	mute = false;
 }
 
 
@@ -26,16 +27,37 @@ boot.prototype = {
 		this.game.load.image('net', 'assets/net.png');
 		//buttons
 		this.game.load.image("playbutton", "assets/play.png");
+		this.game.load.image("musicbutton", "assets/musicbutton.png");	
+		//audio
+		this.game.load.audio("music", "assets/music.ogg");
 	},
 
 	create: function() {
 		this.game.add.sprite(0, 0, 'bgmenu');
 		
-		var play = this.game.add.button(550/2-168/2, 400/2, "playbutton", this.playTheGame,this);
+		var playbutton = this.game.add.button(550/2-168/2, 400/2, "playbutton", this.playTheGame,this);
+		var musicbutton = this.game.add.button(400, 0, "musicbutton", this.togglemusic, this);
+		
+		//add music
+		music = this.game.add.audio('music');
+		music.play();
 	},
 	
 	playTheGame: function(){
 		console.log("PLAY");
 		this.game.state.start("CatDropped");
+	},
+	
+	togglemusic: function(){
+		if (mute === false){
+			music.volume = 0
+			mute = true;
+			console.log("mute = false");
+		}
+		else if (mute === true){
+			music.volume = 1;
+			mute = false;
+			console.log("mute = true");
+		}
 	}
 }

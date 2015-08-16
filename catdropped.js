@@ -2,6 +2,11 @@ var catdropped = function(game){
 	console.log("CatDropped");
 	var player;
 	var choosecolor;
+	
+	var score = 0;
+	var scoretext;
+	
+	
 }
 
 Cat = function(game, x, speed, color){
@@ -24,10 +29,18 @@ Cat.prototype.update = function() {
 	
 	if(checkOverlap(player, this)){
 		   
-		   this.destroy();
+		this.destroy();
+		//add and update score
+		this.score+=0.5;
+		updateScore();
+		
 		   
-		   }
+	}
 
+}
+
+function updateScore(){
+	scoreText.text = "Score: "+score;
 }
 
 function checkOverlap(spriteA, spriteB) {
@@ -53,16 +66,18 @@ catdropped.prototype = {
 		
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		
+		scoreText = this.game.add.text(10,10,"-",{font:"bold 16px Arial"});
+		
 		
 		//timer
 		
 		this.timer1 = this.game.time.create(false);
 		this.timer1.loop(1000, this.createcat, this);
 		this.timer1.start();
-
-
-
-
+		
+		var musicbutton = this.game.add.button(400, 0, "musicbutton", boot.togglemusic, this);
+		
+		
 		//DEBUG, TODO: REMOVE OR COMMENT
 		var debugbutton = this.game.add.button(0,0,"heart",this.createcat,this);
 	},
