@@ -31,7 +31,7 @@ Cat.prototype.update = function() {
 		   
 		this.destroy();
 		//add and update score
-		this.score+=0.5;
+		//this.score+=0.5;
 		updateScore();
 		
 		   
