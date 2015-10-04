@@ -6,7 +6,7 @@ var catdropped = function(game){
 	var choosecolor;
 	
 	var score = 0;
-	var scoretext;
+	//var scoreText;
 	
 	var lives = 3;
 Cat = function(game, x, speed, color){
@@ -38,17 +38,16 @@ Cat.prototype.update = function() {
 		this.y = -10;
 		this.ySpeed = 0;
 		//add and update score
-		//this.score+=0.5;
-		//updateScore();
-		
-		   
+		score+=1;
+		updateScore();	   
 	}
 
 }
 
-/*function updateScore(){
-	scoreText.text = "Score: "+score;
-}*/
+function updateScore(){
+	//scoreText.text = "Score: "+score;
+	console.log(score);
+}
 
 function checkOverlap(spriteA, spriteB) {
 
