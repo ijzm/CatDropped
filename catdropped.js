@@ -32,16 +32,16 @@ Cat.prototype.update = function() {
 		this.destroy();
 		//add and update score
 		//this.score+=0.5;
-		updateScore();
+		//updateScore();
 		
 		   
 	}
 
 }
 
-function updateScore(){
+/*function updateScore(){
 	scoreText.text = "Score: "+score;
-}
+}*/
 
 function checkOverlap(spriteA, spriteB) {
 
@@ -66,7 +66,7 @@ catdropped.prototype = {
 		
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		
-		scoreText = this.game.add.text(10,10,"-",{font:"bold 16px Arial"});
+		//scoreText = this.game.add.text(10,10,"-",{font:"bold 16px Arial"});
 		
 		
 		//timer
