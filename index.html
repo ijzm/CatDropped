@@ -1,19 +1,63 @@
 <!DOCTYPE HTML>
 <html>
 	<title>
-		Cat Dropped
+		CatDropped
 	</title>
+
 	
 	<script type="text/javascript" src="phaser.js"></script>
-	<script type="text/javascript" src="boot.js"></script>
-    <script type="text/javascript" src="catdropped.js"></script>
-    
-    <script>
-    			(function() {
-				var game = new Phaser.Game(550, 400, Phaser.CANVAS, "game");
-				game.state.add("Boot", boot);
-				game.state.add("CatDropped", catdropped);
-				game.state.start("Boot");
-			})();
-        </script>
-<html>
+	<script type="text/javascript" src="Boot.js"></script>
+	<script type="text/javascript" src="Preloader.js"></script>
+	<script type="text/javascript" src="MainMenu.js"></script>
+	<script type="text/javascript" src="Game.js"></script>	
+	<script type="text/javascript" src="GameOver.js"></script>	
+	
+	
+<script type="text/javascript">
+ 
+window.onload = function() {
+ //set up Phaser canvas with width = 800 and height = 600 
+	var game = new Phaser.Game(800,600, Phaser.AUTO, '');
+ 
+//adding all the required states
+	game.state.add('Boot', CatDropped.Boot);
+	game.state.add('Preloader', CatDropped.Preloader);
+	game.state.add('MainMenu', CatDropped.MainMenu);
+	game.state.add('Game', CatDropped.Game);
+	game.state.add('GameOver', CatDropped.GameOver);
+
+	game.state.start('Boot'); //starting the boot state
+ 
+};
+ 
+</script>
+</html>
+
+<!---------------------
+Cat Random Variables:
+Always 					50%
+	Blue		 33%
+	Red			 33%
+	Yellow		 33%
+-----------------------
+Often					25%
+	lightblue	 33%
+	lightgreen	 33%
+	pink		 33%
+-----------------------
+Uncommon				10%
+	green		 33%
+	orange		 33%
+	purple		 33%
+-----------------------
+Hardlyever				05%
+	Black		100%
+	maxspeed+10	100%
+-----------------------
+Bonus + Debuff			10%
+	Bomb		 33%
+	Catfeed		 33%
+	Heart		 33%
+
+	maxspeed+10	100%
+----------------------->

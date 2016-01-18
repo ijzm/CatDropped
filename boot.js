@@ -1,63 +1,44 @@
-var boot = function(game){
-	console.log("boot");
-	mute = false;
-}
+var CatDropped = {}; //declare the object that will hold all game states
+var clicks = 0;     // basic global variables
+var playmusic = true;  //global toggle to control music play across states
+var playsound = true;
+var desktop;
 
+var score = 0;
+var lastscore = 0;
+var canclick = false;
+var level;
 
-boot.prototype = {
-	preload: function() {
-		//preloads the sprites
-		this.game.load.image('blue', 'assets/drops/always/blue.png');
-		this.game.load.image('red', 'assets/drops/always/red.png');
-		this.game.load.image('yellow', 'assets/drops/always/yellow.png');
-		this.game.load.image('lightblue', 'assets/drops/often/lightblue.png');
-		this.game.load.image('lightgreen', 'assets/drops/often/lightgreen.png');
-		this.game.load.image('pink', 'assets/drops/often/pink.png');
-		this.game.load.image('green	', 'assets/drops/uncommon/green.png');
-		this.game.load.image('orange', 'assets/drops/uncommon/orange.png');
-		this.game.load.image('purple', 'assets/drops/uncommon/purple.png');
-		this.game.load.image('black', 'assets/drops/hardlyever/black.png');
-		this.game.load.image('bomb', 'assets/drops/bonus/bomb.png');
-		this.game.load.image('catfeed', 'assets/drops/bonus/catfeed.png');
-		this.game.load.image('heart', 'assets/drops/bonus/heart.gif');
-		//backgrounds
-		this.game.load.image('bg', 'assets/bg.png');
-		this.game.load.image('bgmenu','assets/bgmenu.png');
-		//net
-		this.game.load.image('net', 'assets/net.png');
-		//buttons
-		this.game.load.image("playbutton", "assets/play.png");
-		this.game.load.image("musicbutton", "assets/musicbutton.png");	
-		//audio
-		this.game.load.audio("music", "assets/music.ogg");
-	},
-
-	create: function() {
-		this.game.add.sprite(0, 0, 'bgmenu');
-		
-		var playbutton = this.game.add.button(550/2-168/2, 400/2, "playbutton", this.playTheGame,this);
-		var musicbutton = this.game.add.button(400, 0, "musicbutton", this.togglemusic, this);
-		
-		//add music
-		music = this.game.add.audio('music');
-		music.play();
-	},
+/*if(! localStorage.getItem('myItemKey')){
+	level = 0;
+	localStorage.setItem('myItemKey', level.toString());
+} else {
+	level = localStorage.getItem('myItemKey');
+}*/
+CatDropped.Boot = function (game) {  //declare the boot state
 	
-	playTheGame: function(){
-		console.log("PLAY");
-		this.game.state.start("CatDropped");
+};
+
+CatDropped.Boot.prototype = {
+
+	preload: function () {
+		//load assets for the loading screen
+		//this.load.image('preloaderBackground', 'assets/preloadbck.png');
+		//this.load.image('preloaderBar', 'assets/preloadbar.png');
+
 	},
-	
-	togglemusic: function(){
-		if (mute === false){
-			music.volume = 0
-			mute = true;
-			console.log("mute = false");
+
+	create: function () {
+		this.state.start('Preloader');   //start the Preloader state
+		if(this.game.device.desktop) {
+			desktop = 1;
+		} else {
+			desktop = 0;
+			// aspect ratio with letterboxing if needed
+			this.game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+			this.game.scale.pageAlignHorizontally = true;
+			this.game.scale.pageAlignVertically = true;
 		}
-		else if (mute === true){
-			music.volume = 1;
-			mute = false;
-			console.log("mute = true");
-		}
+
 	}
-}
+};
