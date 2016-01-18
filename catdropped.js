@@ -1,14 +1,14 @@
 var catdropped = function(game){
 	console.log("CatDropped");
+
+}
 	var player;
 	var choosecolor;
 	
 	var score = 0;
-	var scoretext;
+	//var scoreText;
 	
-	
-}
-
+	var lives = 3;
 Cat = function(game, x, speed, color){
 	Phaser.Sprite.call(this, game, x, 0, color);
 	game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -22,25 +22,31 @@ Cat.prototype.update = function() {
 	this.body.velocity.y = this.ySpeed;
 
 	if(this.y >= 400){
-		this.destroy();
+		lives--;
+		this.kill();
+		this.y = -10;
+		this.ySpeed = 0;
 		console.log("lostLife");
+		
+		console.log(lives);
 	}
 	
 	
 	if(checkOverlap(player, this)){
 		   
-		this.destroy();
+		this.kill();
+		this.y = -10;
+		this.ySpeed = 0;
 		//add and update score
-		this.score+=0.5;
-		updateScore();
-		
-		   
+		score+=1;
+		updateScore();	   
 	}
 
 }
 
 function updateScore(){
-	scoreText.text = "Score: "+score;
+	//scoreText.text = "Score: "+score;
+	console.log(score);
 }
 
 function checkOverlap(spriteA, spriteB) {
@@ -66,7 +72,7 @@ catdropped.prototype = {
 		
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		
-		scoreText = this.game.add.text(10,10,"-",{font:"bold 16px Arial"});
+		//scoreText = this.game.add.text(10,10,"-",{font:"bold 16px Arial"});
 		
 		
 		//timer
